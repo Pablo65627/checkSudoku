@@ -1,10 +1,16 @@
+# encoding: utf-8
+
+from esCuadrado import esCuadrado
+from checkcolumna import checkcolumna
+from SonEnteros import SonEnteros
+from checkfila import checkfila
+
+
+# THREE GOLD STARS
+
 correcto = [[1, 2, 3],
             [2, 3, 1],
             [3, 1, 2]]
-
-incorrecto = [[1, 2, 3],
-              [2, 3, 1],
-              [2, 3, 1]]
 
 incorrecto1 = [[1, 2, 3, 4],
                [2, 3, 1, 3],
@@ -34,16 +40,42 @@ incorrecto6 = [[1, 0, 0, 0],
                [0, 0, 0, 1]]
 
 
+def check_sudoku(sudoku):
+
+    if not esCuadrado(sudoku):
+        return False
+
+    if not SonEnteros(sudoku):
+        return False
+
+    if not checkfila(sudoku):
+        return False
+
+    if not checkcolumna(sudoku):
+        return False
+
+    return True
 
 
+# Casos test
 
-if __name__ == '__main__':
-    
+print(check_sudoku(incorrecto1))
+# >>> False
 
-assert check_sudoku(incorrecto1) == False
-assert check_sudoku(correcto) == True
-assert check_sudoku(incorrecto2) == False
-assert check_sudoku(incorrecto3) == False
-assert check_sudoku(incorrecto4) == False
-assert check_sudoku(incorrecto5) == False
-assert check_sudoku(incorrecto6) == False
+print(check_sudoku(correcto))
+# >>> True
+
+print(check_sudoku(incorrecto2))
+# >>> False
+
+print(check_sudoku(incorrecto3))
+# >>> False
+
+print(check_sudoku(incorrecto4))
+# >>> False
+
+print(check_sudoku(incorrecto5))
+# >>> False
+
+print(check_sudoku(incorrecto6))
+# >>> False
